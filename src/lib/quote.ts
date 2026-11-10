@@ -1,0 +1,5 @@
+import { findProduct } from './catalog';
+export type CartItem = {id:string; productId:string; quantity:number; options:Record<string,string>; notes:string; artwork:string};
+export function quoteMessage(items:CartItem[],name?:string) {return `Olá, equipe Gráfica 011!\n\n${name?`Meu nome é ${name}.\n\n`:''}Gostaria de solicitar um orçamento:\n\n${items.map((item,i)=>`${i+1}. ${findProduct(item.productId)?.name || 'Produto'}\n${Object.entries(item.options).map(([key,value])=>`${key}: ${value}`).join('\n')}\nQuantidade: ${item.quantity} unidades\nArte: ${item.artwork}${item.notes?`\nObservações: ${item.notes}`:''}`).join('\n\n')}\n\nPoderiam me informar o valor e as condições de produção? Obrigado!`;}
+export function whatsappUrl(number:string,message:string) {return /^55\d{10,11}$/.test(number)?`https://wa.me/${number}?text=${encodeURIComponent(message)}`:null;}
+export function validateItem(item:CartItem) {const p=findProduct(item.productId);return !!p && Number.isInteger(item.quantity) && item.quantity>0 && item.quantity<=1000000 && p.options.every(o=>o.values.includes(item.options[o.label])) && item.notes.length<=2000;}

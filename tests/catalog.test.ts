@@ -1,0 +1,10 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {products,categories,searchProducts} from '../src/lib/catalog';
+import {quoteMessage,validateItem,whatsappUrl,type CartItem} from '../src/lib/quote';
+test('catalog has unique routes and every category has products',()=>{assert.ok(products.length>=30);assert.equal(new Set(products.map(p=>p.slug)).size,products.length);for(const c of categories)assert.ok(products.some(p=>p.category===c.slug));});
+test('search tolerates accents, case and multiple keywords',()=>{assert.ok(searchProducts('ADESIVO VINIL').some(p=>p.name==='Adesivo em Vinil'));assert.ok(searchProducts('gravacao').length>0);assert.equal(searchProducts('xyznotfound').length,0)});
+const item:CartItem={id:'test',productId:'adesivo-em-vinil',quantity:500,options:{Material:'Vinil Fosco',Formato:'Redondo',Medidas:'5 × 5 cm',Acabamento:'Fosco'},notes:'Logotipo vermelho & preto',artwork:'Sim, já tenho a arte'};
+test('quote preserves configuration, quantity and accented notes',()=>{assert.ok(validateItem(item));const message=quoteMessage([item],'Ana');for(const value of ['Ana','Adesivo em Vinil','500','Vinil Fosco','Redondo','5 × 5 cm','Logotipo vermelho & preto'])assert.ok(message.includes(value));const url=whatsappUrl('5511999999999',message);assert.equal(new URL(url!).searchParams.get('text'),message);assert.equal(whatsappUrl('',message),null)});
+test('reject invalid quantities and unsupported material',()=>{assert.equal(validateItem({...item,quantity:-1}),false);assert.equal(validateItem({...item,quantity:1.5}),false);assert.equal(validateItem({...item,options:{...item.options,Material:'invalid'}}),false);assert.equal(validateItem({...item,productId:'unknown'}),false)});
+test('multi product message retains separate configurations',()=>{const message=quoteMessage([item,{...item,id:'two',quantity:100,options:{...item.options,Formato:'Quadrado'}}]);assert.ok(message.includes('1. Adesivo'));assert.ok(message.includes('2. Adesivo'));assert.ok(message.includes('500 unidades'));assert.ok(message.includes('100 unidades'));assert.ok(message.includes('Quadrado'))});
