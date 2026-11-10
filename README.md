@@ -28,7 +28,7 @@ O build gera `out/`, com uma página HTML para cada rota. Hospedagem deve resolv
 
 ## Informações ainda necessárias para operação
 
-1. Logo oficial. A identificação textual no protótipo não é uma reprodução nem uma proposta de logo.
+1. Logos oficiais incorporados: versão escura no cabeçalho e clara no rodapé, preservando os arquivos fornecidos.
 2. Número oficial: configure `WHATSAPP_BUSINESS_NUMBER` em `.env.local` no formato internacional 55 + DDD + número; execute um novo build. Sem número válido, a interface permite copiar/salvar o rascunho e explica a pendência.
 3. Catálogo, materiais, combinações, preços e políticas confirmados. Todas as opções atuais são exemplos para avaliação.
 4. Contato, horários, localização e documentos legais aprovados.

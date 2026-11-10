@@ -23,3 +23,6 @@
 
 /* Display-only prototype prices; quotation logic remains unchanged. */
 .card-action>span{font-size:19px;font-weight:700;letter-spacing:-.4px}.price-line strong{font-size:27px;font-weight:700}.cart-item>strong{font-size:20px;font-weight:700}
+
+/* Official logos supplied by the client, preserved without alteration. */
+.brand{width:160px;min-width:160px;display:block;line-height:normal}.brand img{display:block;width:100%;height:auto;object-fit:contain}footer .brand{width:190px;min-width:0}@media(max-width:900px){.brand{width:130px;min-width:130px}}@media(max-width:640px){.header-main>.brand{width:120px;min-width:0;max-width:100%}footer .brand{width:175px}}
