@@ -1,6 +1,7 @@
+import { Intro } from '@/components/intro';
 import type { Metadata } from 'next';
 import { StoreProvider } from '@/components/store';
 import { Shell } from '@/components/shell';
 import './globals.css';
 export const metadata:Metadata={title:'Gráfica 011 | Sua ideia, nossa impressão.',description:'Explore produtos personalizados, gravação a laser e soluções gráficas. Configure seu projeto e solicite um orçamento.'};
-export default function RootLayout({children}:{children:React.ReactNode}) { return <html lang="pt-BR"><head><link rel="preload" href="/fonts/IsidoraSans-Regular.otf" as="font" type="font/otf" crossOrigin="anonymous"/><link rel="preload" href="/fonts/IsidoraSans-Bold.otf" as="font" type="font/otf" crossOrigin="anonymous"/></head><body><StoreProvider><Shell>{children}</Shell></StoreProvider></body></html>; }
+export default function RootLayout({children}:{children:React.ReactNode}) { return <html lang="pt-BR"><head><link rel="preload" href="/fonts/IsidoraSans-Regular.otf" as="font" type="font/otf" crossOrigin="anonymous"/><link rel="preload" href="/fonts/IsidoraSans-Bold.otf" as="font" type="font/otf" crossOrigin="anonymous"/></head><body><Intro><StoreProvider><Shell>{children}</Shell></StoreProvider></Intro></body></html>; }
