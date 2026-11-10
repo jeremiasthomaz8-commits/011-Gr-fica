@@ -20,3 +20,6 @@
 .search input:not([type=checkbox]):not([type=radio]){border:0;background:transparent;padding:0;box-shadow:none}
 .product-image{content-visibility:auto;contain-intrinsic-size:230px}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+
+/* Display-only prototype prices; quotation logic remains unchanged. */
+.card-action>span{font-size:19px;font-weight:700;letter-spacing:-.4px}.price-line strong{font-size:27px;font-weight:700}.cart-item>strong{font-size:20px;font-weight:700}
